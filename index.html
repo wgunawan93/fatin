@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Semangat Athin ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      color: #fff;
+      background: radial-gradient(circle at 20% 10%, #312a66 0%, #1d1b2b 45%, #0e0d16 100%);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .card {
+      text-align: center;
+      padding: 32px;
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      max-width: 700px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 0 0 16px rgba(255, 104, 180, 0.6);
+    }
+
+    .message {
+      font-size: 20px;
+      min-height: 60px;
+      margin-bottom: 20px;
+      transition: opacity 0.8s ease;
+    }
+
+    .big-heart {
+      font-size: 36px;
+      animation: pulse 1.6s ease-in-out infinite;
+      display: block;
+      margin-top: 10px;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .card img {
+      max-width: 220px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    /* Hujan love */
+    .love {
+      position: fixed;
+      top: -40px;
+      font-size: 20px;
+      animation: fall linear forwards;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Emoji bergerak samping */
+    .emoji-float {
+      position: absolute;
+      font-size: 32px;
+      animation: floatEmoji 6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatEmoji {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      50% { transform: translateY(-20px) scale(1.2); opacity: 0.8; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Emoji bergerak di samping -->
+  <div class="emoji-float" style="left: 10%; top: 60%;">😊</div>
+  <div class="emoji-float" style="right: 10%; top: 40%;">🥰</div>
+  <div class="emoji-float" style="left: 15%; top: 30%;">😘</div>
+  <div class="emoji-float" style="right: 15%; top: 70%;">😚</div>
+
+  <!-- Kontainer utama -->
+  <div class="container">
+    <div class="card">
+      <h1 class="title">SEMANGAT ATHIN, 
+        salam hangat dariku love! ✨</h1>
+      <img src="OIP.webp" alt="Pengantin lucu" />
+      <p class="message" id="messageBox"></p>
+      <span class="big-heart">❤️ (≧◡≦) (✿◠‿◠)</span>
+    </div>
+  </div>
+
+  <script>
+    const messages = [
+      "Athin, kamu nggak harus sempurna; cukup konsisten. Satu langkah kecil saja sudah kemenangan.",
+      "Athin, istirahat itu bukan mundur—itu strategi agar besok kamu lebih kuat.",
+      "Progres kecil tetap progres. Hari ini kamu sudah menang karena tetap mencoba.",
+      "Kalau kamu lelah, Athin, lihat lagi tujuanmu. Di sana ada dirimu yang bangga.",
+      "Rencana boleh berubah, tekad tetap. Athin bisa, pelan tapi pasti.",
+      "Terima kasih sudah bertahan sejauh ini, Athin. Kamu layak bangga pada dirimu."
+    ];
+
+    let index = 0;
+    const box = document.getElementById("messageBox");
+
+    function showMessage() {
+      box.style.opacity = 0;
+      setTimeout(() => {
+        box.textContent = messages[index];
+        box.style.opacity = 1;
+        index = (index + 1) % messages.length;
+      }, 800);
+    }
+
+    showMessage();
+    setInterval(showMessage, 6000);
+
+    // Efek hujan love
+    const hearts = ["❤️","💖","💗","💓","💘","💝","🩷"];
+    function createLove() {
+      const love = document.createElement("div");
+      love.className = "love";
+      love.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      love.style.left = Math.random() * window.innerWidth + "px";
+      love.style.fontSize = (Math.random() * 20 + 16) + "px";
+      love.style.animationDuration = (Math.random() * 4 + 3) + "s";
+      document.body.appendChild(love);
+      love.addEventListener("animationend", () => love.remove());
+    }
+
+    setInterval(createLove, 400);
+  </script>
+</body>
+</html>
